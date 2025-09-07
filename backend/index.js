@@ -1,6 +1,5 @@
 import express from "express";
 import http from "http";
-import { Server } from "socket.io";
 import path from "path";
 import cors from "cors";
 import axios from "axios";
@@ -24,7 +23,11 @@ function reloadWebsite() {
 }
 
 setInterval(reloadWebsite, interval);
-
+const io = new Server(server, {
+  cors: {
+    origin: "*"
+  }
+});
 app.use(cors());
 
 // Enhanced room structure to support file systems
