@@ -29,7 +29,14 @@ const io = new Server(server, {
     origin: "*"
   }
 });
-app.use(cors());
+app.use(
+  cors({
+    origin: "*",
+    credentials: false,
+    methods: ["GET", "POST"],
+    allowedHeaders: ["Content-Type"]
+  })
+);
 
 // Enhanced room structure to support file systems
 const rooms = new Map();
